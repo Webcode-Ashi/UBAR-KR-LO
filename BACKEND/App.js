@@ -1,0 +1,22 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const connectDB = require('./databse/db');
+
+const userRoutes = require('./Routes/user.routes');
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+connectDB();
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/users', userRoutes);
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+module.exports = app;
