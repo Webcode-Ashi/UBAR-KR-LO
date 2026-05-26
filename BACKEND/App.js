@@ -7,6 +7,7 @@ const app = express();
 const connectDB = require('./databse/db');
 
 const userRoutes = require('./Routes/user.routes');
+const captionRoutes = require('./Routes/caption.routes');
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/users', userRoutes);
+app.use('/captions', captionRoutes);
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
