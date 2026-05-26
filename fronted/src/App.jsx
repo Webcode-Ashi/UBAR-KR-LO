@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Userlogin from './pages/Userlogin'
 import Usersignup from './pages/Usersignup'
-import Captionlogin from './pages/Captionlogin'
-import Captionsignup from './pages/Captionsignup'
+import Captainlogin from './pages/Captainlogin'
+import Captainsignup from './pages/Captainsignup'
 const App = () => {
   return (
     <div>
@@ -12,8 +12,8 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/userlogin' element={<Userlogin />} />
         <Route path='/usersignup' element={<Usersignup />} />
-        <Route path='/captionlogin' element={<Captionlogin />} />
-        <Route path='/captionsignup' element={<Captionsignup />} />
+        <Route path='/captainlogin' element={<Captainlogin />} />
+        <Route path='/captainsignup' element={<Captainsignup />} />
       </Routes>
     </div>
   )
