@@ -5,6 +5,7 @@ import Userlogin from './pages/Userlogin'
 import Usersignup from './pages/Usersignup'
 import Captainlogin from './pages/Captainlogin'
 import Captainsignup from './pages/Captainsignup'
+import Start from './pages/Start'
 import { useContext } from 'react'
 import { userDataContext } from './Context/UserContext'
 const App = () => {
@@ -13,7 +14,8 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Start />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/userlogin' element={<Userlogin />} />
         <Route path='/usersignup' element={<Usersignup />} />
         <Route path='/captainlogin' element={<Captainlogin />} />

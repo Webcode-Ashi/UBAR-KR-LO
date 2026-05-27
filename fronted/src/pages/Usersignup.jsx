@@ -1,29 +1,40 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState,useContext } from 'react'
+import { Link,useNavigate } from 'react-router-dom'
+import {userDataContext} from '../Context/UserContext'
+import axios from 'axios'
 import logo from '../assets/uberlogo.png'
 const Usersignup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
-  const [userdata, setuserdata] = useState({})
-  const handleSubmit = (e) => {
+  
+  const navigate = useNavigate()
+  const {user,setUser} =useContext(userDataContext)
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setuserdata({
-      fullname:{
+   const newUser = {
+     fullname:{
         firstname:firstname,
         lastname:lastname
       },
       email:email,
       password:password
-    })
-    console.log(userdata);
+    }
+   
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser)
     
+    if(response.status === 201){
+      const data = response.data
+      
+      setUser(data.user)
+      navigate('/home')
+    }
     setEmail('')
     setPassword('')
     setFirstname('')
     setLastname('')
-    console.log({ email, password, firstname, lastname })
+   
   }
   return (
      <div className='p-7 flex flex-col  justify-between h-screen'>
@@ -53,7 +64,7 @@ const Usersignup = () => {
        placeholder='Password' required />
        <br/>
        <br/>
-       <button className='bg-black w-full text-white font-semibold text-xl py-2 px-4 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500' type='submit'>Sign Up</button>
+       <button className='bg-black w-full text-white font-semibold text-xl py-2 px-4 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500' type='submit'>Create Account</button>
       </form>
       <p className='text-center mt-2 text-md font-medium'>Already have an account? <Link to="/userlogin" className=' text-[#2596be] hover:underline'>Login here</Link></p> 
      </div>
